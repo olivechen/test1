@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOTD 主頁</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            -webkit-font-smoothing: antialiased;
+        }
+        .status-bar {
+            height: 44px;
+            background-color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .tab-bar {
+            height: 50px;
+            background-color: #fff;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            border-top: 1px solid #eaeaea;
+        }
+        .card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            background-color: #fff;
+        }
+        .weather-icon {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+        }
+        .temp-animation {
+            transition: all 0.3s ease;
+        }
+        .temp-animation:hover {
+            transform: scale(1.05);
+        }
+        .weather-card-gradient {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+        }
+        .forecast-day {
+            min-width: 60px;
+            text-align: center;
+        }
+        .forecast-icon {
+            font-size: 1.5rem;
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body class="pb-16">
+    <!-- 狀態欄 -->
+    <div class="status-bar flex items-center justify-between px-4">
+        <div class="text-sm font-medium">9:41</div>
+        <div class="flex items-center space-x-1">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+    
+    <!-- 頁面內容 -->
+    <div class="container mx-auto px-4 py-4">
+        <h1 class="text-2xl font-bold mb-6">台北市</h1>
+        
+        <!-- 今日天氣卡片 -->
+        <div class="card weather-card-gradient mb-6">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-semibold">今日天氣</h2>
+                    <span class="text-sm">3月13日 星期三</span>
+                </div>
+                
+                <div class="flex items-center">
+                    <div class="weather-icon temp-animation">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold temp-animation">24°C</div>
+                        <div class="text-sm opacity-80">晴朗</div>
+                    </div>
+                    <div class="ml-auto text-right">
+                        <div class="text-sm">濕度: 65%</div>
+                        <div class="text-sm">風速: 3 km/h</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 近7日天氣卡片 -->
+        <div class="card mb-6">
+            <div class="p-4">
+                <h2 class="text-lg font-semibold mb-4">近7日天氣預報</h2>
+                
+                <div class="flex overflow-x-auto pb-2">
+                    <!-- 今天 -->
+                    <div class="forecast-day flex flex-col items-center">
+                        <div class="text-sm font-medium">今天</div>
+                        <div class="forecast-icon text-yellow-500">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="text-sm font-medium">24°C</div>
+                        <div class="text-xs text-gray-500">18°C</div>
+                    </div>
+                    
+                    <!-- 明天 -->
+                    <div class="forecast-day flex flex-col items-center">
+                        <div class="text-sm font-medium">明天</div>
+                        <div class="forecast-icon text-yellow-500">
+                            <i class="fas fa-cloud-sun"></i>
+                        </div>
+                        <div class="text-sm font-medium">23°C</div>
+                        <div class="text-xs text-gray-500">17°C</div>
+                    </div>
+                    
+                    <!-- 週五 -->
+                    <div class="forecast-day flex flex-col items-center">
+                        <div class="text-sm font-medium">週五</div>
+                        <div class="forecast-icon text-gray-400">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="text-sm font-medium">22°C</div>
+                        <div class="text-xs text-gray-500">16°C</div>
+                    </div>
+                    
+                    <!-- 週六 -->
+                    <div class="forecast-day flex flex-col items-center">
+                        <div class="text-sm font-medium">週六</div>
+                        <div class="forecast-icon text-blue-400">
+                            <i class="fas fa-cloud-rain"></i>
+                        </div>
+                        <div class="text-sm font-medium">20°C</div>
+                        <div class="text-xs text-gray-500">15°C</div>
+                    </div>
+                    
+                    <!-- 週日 -->
+                    <div class="forecast-day flex flex-col items-center">
+                        <div class="text-sm font-medium">週日</div>
+                        <div class="forecast-icon text-blue-400">
+                            <i class="fas fa-cloud-showers-heavy"></i>
+                        </div>
+                        <div class="text-sm font-medium">19°C</div>
+                        <div class="text-xs text-gray-500">14°C</div>
+                    </div>
+                    
+                    <!-- 週一 -->
+                    <div class="forecast-day flex flex-col items-center">
+                        <div class="text-sm font-medium">週一</div>
+                        <div class="forecast-icon text-gray-400">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="text-sm font-medium">21°C</div>
+                        <div class="text-xs text-gray-500">16°C</div>
+                    </div>
+                    
+                    <!-- 週二 -->
+                    <div class="forecast-day flex flex-col items-center">
+                        <div class="text-sm font-medium">週二</div>
+                        <div class="forecast-icon text-yellow-500">
+                            <i class="fas fa-cloud-sun"></i>
+                        </div>
+                        <div class="text-sm font-medium">22°C</div>
+                        <div class="text-xs text-gray-500">17°C</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 今日穿搭風格卡片 -->
+        <div class="card mb-6">
+            <div class="p-4">
+                <h2 class="text-lg font-semibold mb-4">今日穿搭風格</h2>
+                
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <div class="bg-gray-100 rounded-lg p-3 text-center hover:bg-blue-100 transition duration-200 cursor-pointer">
+                        <span class="text-sm">韓系簡約風</span>
+                    </div>
+                    <div class="bg-gray-100 rounded-lg p-3 text-center hover:bg-blue-100 transition duration-200 cursor-pointer">
+                        <span class="text-sm">運動休閒風</span>
+                    </div>
+                    <div class="bg-gray-100 rounded-lg p-3 text-center hover:bg-blue-100 transition duration-200 cursor-pointer">
+                        <span class="text-sm">日系潮流風</span>
+                    </div>
+                    <div class="bg-gray-100 rounded-lg p-3 text-center hover:bg-blue-100 transition duration-200 cursor-pointer">
+                        <span class="text-sm">極簡主義風</span>
+                    </div>
+                </div>
+                
+                <button class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 rounded-lg transition duration-200 flex items-center justify-center">
+                    <i class="fas fa-tshirt mr-2"></i>
+                    生成今日OOTD
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部標籤欄 -->
+    <div class="tab-bar flex items-center justify-around">
+        <div class="flex flex-col items-center text-blue-500">
+            <i class="fas fa-tshirt"></i>
+            <span class="text-xs mt-1">OOTD</span>
+        </div>
+        <div class="flex flex-col items-center text-gray-400">
+            <i class="fas fa-user"></i>
+            <span class="text-xs mt-1">我的</span>
+        </div>
+    </div>
+</body>
+</html> 

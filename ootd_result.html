@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOTD 生成結果</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            -webkit-font-smoothing: antialiased;
+        }
+        .status-bar {
+            height: 44px;
+            background-color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .tab-bar {
+            height: 50px;
+            background-color: #fff;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            border-top: 1px solid #eaeaea;
+        }
+        .card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            background-color: #fff;
+        }
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            display: flex;
+            align-items: flex-end;
+        }
+        .popup-content {
+            background-color: #fff;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease-out;
+        }
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel-item {
+            min-width: 100%;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+        }
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+        .carousel-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        .carousel-indicator.active {
+            background-color: white;
+        }
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+        .weather-card-gradient {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+        }
+    </style>
+</head>
+<body class="pb-16">
+    <!-- 狀態欄 -->
+    <div class="status-bar flex items-center justify-between px-4">
+        <div class="text-sm font-medium">9:41</div>
+        <div class="flex items-center space-x-1">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+    
+    <!-- 頁面內容 (背景) -->
+    <div class="container mx-auto px-4 py-4 opacity-25">
+        <h1 class="text-2xl font-bold mb-6">台北市</h1>
+        
+        <!-- 今日天氣卡片 -->
+        <div class="card weather-card-gradient mb-6">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-semibold">今日天氣</h2>
+                    <span class="text-sm">3月13日 星期三</span>
+                </div>
+                
+                <div class="flex items-center">
+                    <div class="text-4xl mr-4">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold">24°C</div>
+                        <div class="text-sm opacity-80">晴朗</div>
+                    </div>
+                    <div class="ml-auto text-right">
+                        <div class="text-sm">濕度: 65%</div>
+                        <div class="text-sm">風速: 3 km/h</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 其他卡片 (模糊背景) -->
+        <div class="card mb-6 h-32"></div>
+        <div class="card mb-6 h-40"></div>
+    </div>
+    
+    <!-- 彈出層 -->
+    <div class="popup-overlay">
+        <div class="popup-content">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-bold">今日OOTD推薦</h2>
+                    <div class="text-sm px-3 py-1 bg-blue-100 text-blue-600 rounded-full">韓系簡約風</div>
+                </div>
+                
+                <!-- 輪播圖 -->
+                <div class="carousel mb-6">
+                    <div class="carousel-inner">
+                        <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+                        <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+                        <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1516826957135-700dedea698c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+                    </div>
+                    <div class="carousel-indicators">
+                        <div class="carousel-indicator active"></div>
+                        <div class="carousel-indicator"></div>
+                        <div class="carousel-indicator"></div>
+                    </div>
+                </div>
+                
+                <!-- 穿搭建議 -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold mb-2">穿搭建議</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        今天天氣晴朗，溫度適中，非常適合韓系簡約風格。建議搭配：
+                    </p>
+                    <ul class="mt-2 space-y-2 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-tshirt text-blue-500 mt-1 mr-2"></i>
+                            <span>上衣：淺色系寬鬆T恤或簡約襯衫</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-socks text-blue-500 mt-1 mr-2"></i>
+                            <span>下裝：直筒牛仔褲或休閒長褲</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-shoe-prints text-blue-500 mt-1 mr-2"></i>
+                            <span>鞋子：白色運動鞋或簡約帆布鞋</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-hat-cowboy text-blue-500 mt-1 mr-2"></i>
+                            <span>配飾：簡約手錶、小巧耳環</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 穿搭小貼士 -->
+                <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                    <h3 class="text-md font-semibold mb-2 flex items-center">
+                        <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                        穿搭小貼士
+                    </h3>
+                    <p class="text-sm text-gray-600">
+                        今天氣溫變化較大，建議攜帶一件輕薄外套，可以在早晚溫差大時穿上。選擇透氣面料，避免悶熱感。
+                    </p>
+                </div>
+                
+                <!-- 按鈕 -->
+                <div class="flex space-x-3">
+                    <button class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-3 rounded-lg transition duration-200">
+                        返回
+                    </button>
+                    <button class="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 rounded-lg transition duration-200">
+                        保存穿搭
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部標籤欄 -->
+    <div class="tab-bar flex items-center justify-around">
+        <div class="flex flex-col items-center text-blue-500">
+            <i class="fas fa-tshirt"></i>
+            <span class="text-xs mt-1">OOTD</span>
+        </div>
+        <div class="flex flex-col items-center text-gray-400">
+            <i class="fas fa-user"></i>
+            <span class="text-xs mt-1">我的</span>
+        </div>
+    </div>
+    
+    <script>
+        // 簡單的輪播圖功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselInner = document.querySelector('.carousel-inner');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            let currentIndex = 0;
+            
+            // 設置輪播圖點擊事件
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                });
+            });
+            
+            function updateCarousel() {
+                carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // 更新指示器狀態
+                indicators.forEach((indicator, index) => {
+                    if (index === currentIndex) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
+            
+            // 自動輪播
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % indicators.length;
+                updateCarousel();
+            }, 3000);
+        });
+    </script>
+</body>
+</html> 

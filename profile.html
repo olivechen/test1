@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的頁面</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            -webkit-font-smoothing: antialiased;
+        }
+        .status-bar {
+            height: 44px;
+            background-color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .tab-bar {
+            height: 50px;
+            background-color: #fff;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            border-top: 1px solid #eaeaea;
+        }
+        .card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            background-color: #fff;
+        }
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .profile-header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        }
+        .menu-item {
+            transition: all 0.2s ease;
+        }
+        .menu-item:active {
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+<body class="pb-16">
+    <!-- 狀態欄 -->
+    <div class="status-bar flex items-center justify-between px-4">
+        <div class="text-sm font-medium">9:41</div>
+        <div class="flex items-center space-x-1">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+    
+    <!-- 頁面內容 -->
+    <div class="container mx-auto px-4 py-4">
+        <!-- 個人資料頭部 -->
+        <div class="profile-header rounded-2xl text-white p-6 mb-6">
+            <div class="flex items-center">
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="用戶頭像" class="avatar">
+                <div class="ml-4">
+                    <h1 class="text-xl font-bold">小明</h1>
+                    <p class="text-sm opacity-80">喜歡簡約風格的設計師</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 個人資料卡片 -->
+        <div class="card mb-6">
+            <div class="p-4">
+                <h2 class="text-lg font-semibold mb-4">個人資料</h2>
+                
+                <div class="space-y-4">
+                    <!-- 城市 -->
+                    <div class="flex items-center justify-between py-2 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-blue-500 w-6"></i>
+                            <span class="ml-3">城市</span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                            <span>台北市</span>
+                            <i class="fas fa-chevron-right ml-2 text-gray-400 text-xs"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- 性別 -->
+                    <div class="flex items-center justify-between py-2 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <i class="fas fa-venus-mars text-blue-500 w-6"></i>
+                            <span class="ml-3">性別</span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                            <span>男生</span>
+                            <i class="fas fa-chevron-right ml-2 text-gray-400 text-xs"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- 個人描述 -->
+                    <div class="flex items-center justify-between py-2 border-b border-gray-100">
+                        <div class="flex items-center">
+                            <i class="fas fa-user-edit text-blue-500 w-6"></i>
+                            <span class="ml-3">個人描述</span>
+                        </div>
+                        <div class="flex items-center text-gray-600">
+                            <span>喜歡簡約風格的設計師</span>
+                            <i class="fas fa-chevron-right ml-2 text-gray-400 text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 穿搭偏好卡片 -->
+        <div class="card mb-6">
+            <div class="p-4">
+                <h2 class="text-lg font-semibold mb-4">穿搭偏好</h2>
+                
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <div class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">韓系簡約風</div>
+                    <div class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">日系潮流風</div>
+                    <div class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">極簡主義風</div>
+                </div>
+                
+                <button class="w-full border border-blue-500 text-blue-500 font-medium py-2 rounded-lg transition duration-200 flex items-center justify-center">
+                    <i class="fas fa-plus mr-2"></i>
+                    編輯偏好風格
+                </button>
+            </div>
+        </div>
+        
+        <!-- 設置選項 -->
+        <div class="card mb-6">
+            <div class="p-4">
+                <h2 class="text-lg font-semibold mb-4">設置</h2>
+                
+                <div class="space-y-1">
+                    <div class="menu-item flex items-center justify-between py-3 px-2 rounded-lg">
+                        <div class="flex items-center">
+                            <i class="fas fa-bell text-gray-500 w-6"></i>
+                            <span class="ml-3">通知設置</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                    </div>
+                    
+                    <div class="menu-item flex items-center justify-between py-3 px-2 rounded-lg">
+                        <div class="flex items-center">
+                            <i class="fas fa-shield-alt text-gray-500 w-6"></i>
+                            <span class="ml-3">隱私設置</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                    </div>
+                    
+                    <div class="menu-item flex items-center justify-between py-3 px-2 rounded-lg">
+                        <div class="flex items-center">
+                            <i class="fas fa-question-circle text-gray-500 w-6"></i>
+                            <span class="ml-3">幫助與反饋</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                    </div>
+                    
+                    <div class="menu-item flex items-center justify-between py-3 px-2 rounded-lg">
+                        <div class="flex items-center">
+                            <i class="fas fa-info-circle text-gray-500 w-6"></i>
+                            <span class="ml-3">關於我們</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部標籤欄 -->
+    <div class="tab-bar flex items-center justify-around">
+        <div class="flex flex-col items-center text-gray-400">
+            <i class="fas fa-tshirt"></i>
+            <span class="text-xs mt-1">OOTD</span>
+        </div>
+        <div class="flex flex-col items-center text-blue-500">
+            <i class="fas fa-user"></i>
+            <span class="text-xs mt-1">我的</span>
+        </div>
+    </div>
+</body>
+</html> 
